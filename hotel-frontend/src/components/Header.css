@@ -1,0 +1,27 @@
+header {
+  background-color: #5a3527;
+  color: #c8c5c5;
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+}
+
+nav a {
+  display: block;
+  padding: 1em 0.8em;
+  text-decoration: none;
+  color: inherit;
+  font-size: 1.2em;
+}
+
+nav a:hover {
+  color: white;
+  transition: .3s;
+}
+
+.active {
+  color: white;
+  font-weight: normal;
+}

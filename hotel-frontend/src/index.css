@@ -1,0 +1,159 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', serif;
+}
+
+#root {
+  max-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #E4E6E7;
+}
+
+main {
+  animation: fadeIn 1s;
+  padding: 1.5em 2em 0;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em; 
+}
+
+.horizontal .input-box {
+  margin: 0 0.3em 0 0;
+}
+
+label {
+  margin: 0 0 0.5em 0.1em;
+  font-size: 0.9em;
+  color: black;
+  text-transform: none;
+  font-weight: normal;
+}
+
+input, select,
+button {
+  border-radius: 0.4em;
+  padding: 0.8em;
+  border: 2px solid transparent;
+  font-size: 1.1em;
+  transition: .3s;
+}
+
+input:hover, input:focus, select:hover, select:focus {
+  outline: none;
+  border-color: #5a3527;
+}
+
+button {
+  display: block;
+  background-color: #5a3527;
+  color: white;
+  font-weight: bold;
+  height: max-content;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: translateY(-5%);
+}
+
+.warning {
+  position: fixed;
+  bottom: 2.5%;
+  right: 2.5%;
+  z-index: 2;
+  color: white;
+  background-color: darkred;
+  box-shadow: 0px 0px 28px 3px rgba(163, 18, 18, 0.75);
+  padding: 0.5em;
+  font-weight: bold;
+  border-radius: 0.3em;
+  animation: popIn 5s;
+}
+
+.info-section {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.info-section h2 {
+  color: black;
+  margin-bottom: 1em;
+  text-transform: none;
+  width: 100%;
+}
+
+.info-section li:not(:last-of-type) {
+  padding-bottom: 1em;
+}
+
+.info-section ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+    color: #ad9709;
+}
+
+.info-section li span {
+  color: black;
+  font-weight: normal;
+  text-transform: none;
+}
+
+.room-info li:last-of-type,
+.reserv-info li:last-of-type {
+  align-self: flex-end;
+  color: darkgreen;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(1);
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+  
+@media screen and (max-width: 500px) {
+    main {
+      padding: 1em 1em 0;
+    }
+    label {
+      font-size: 0.7em;
+    }
+
+    input, select, button {
+      font-size: 0.9em;
+      padding: 0.5em;
+      border-radius: 0.3em;
+    }
+
+    .info-section {
+      font-size: 0.9em;
+    }
+  }

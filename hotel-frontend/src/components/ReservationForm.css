@@ -1,0 +1,47 @@
+.room-reservation > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.room-reservation > div button {
+  background-color: #ad9709;
+  font-size: 0.9em;
+  padding: 0.4em;
+  width: 80%;
+  align-self: flex-start;
+}
+
+.room-reservation form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.room-reservation form section {
+  margin: 0;
+  padding: 0;
+}
+
+.room-reservation form button {
+  width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+  .room-reservation > div button {
+    padding: 0.3em;
+  }
+
+  .room-reservation form section {
+    width: 100%;
+  }
+
+  .short-input-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .short-input-section > * {
+    width: 47.5%;
+  }
+}

@@ -1,0 +1,82 @@
+.room-page-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.room-page-container h1 {
+  width: 45%;
+  font-size: 1.5em;
+  margin: 0 auto 1em auto;
+  clip-path: polygon(0% 25%, 2.5% 0%, 97.5% 0%, 100% 25%, 100% 75%, 97.5% 100%, 2.5% 100%, 0% 75%);
+  text-align: center;
+  color: white;
+  padding: 0.2em 0;
+  background: rgb(173, 151, 9);
+  background: linear-gradient(90deg, rgba(173, 151, 9, 1) 0%, rgba(150, 136, 46, 1) 100%);
+  position: relative;
+  font-weight: normal;
+}
+
+.room-page-container h1::before,
+.room-page-container h1::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #e4e6e7;
+  border-radius: 50%;
+  width: 0.6em;
+  height: 0.6em;
+}
+
+.room-page-container h1::after {
+  right: 5%;
+}
+
+.room-page-container h1::before {
+  left: 5%;
+}
+
+.room-page-container section {
+  padding: 1em 0;
+  margin: 0 auto;
+  width: 45%;
+}
+
+.room-page-container section h2 {
+  color: black;
+  margin-bottom: 1em;
+  text-transform: none;
+  width: 100%;
+}
+.room-info {
+   border-bottom: 1px solid black;
+}
+
+@media screen and (max-width: 900px) {
+  .room-page-container h1, .room-page-container > section {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 670px) {
+    .room-page-container h1,
+    .room-page-container>section {
+      width: 80%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+  .room-page-container h1,
+  .room-page-container>section {
+    width: 95%;
+  }
+
+  .room-page-container h1 {
+    font-size: 1.3em;
+    margin-bottom: 0.3em;
+  }
+  .room-page-container h2 {
+    font-size: 1.2rem;
+  }
+}

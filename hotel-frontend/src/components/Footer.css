@@ -1,0 +1,19 @@
+footer {
+  width: 100%;
+  background-color: #5a3527;
+  margin-top: auto;
+}
+
+footer h2 {
+  font-family: 'GFS Didot', serif;
+  padding: 1em;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+footer h2 span {
+  font-weight: normal;
+  font-size: 0.8em;
+}
