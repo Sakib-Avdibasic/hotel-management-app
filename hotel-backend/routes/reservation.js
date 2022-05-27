@@ -124,7 +124,7 @@ router.post('/', (req, res) => {
 		return res.send('At least 1 of the guests must be an adult');
 
 	const childCount = req.body.child_count;
-	if (adultCount < 0 || childCount < 0) return res.send('Invalid guest amount');
+	if (childCount < 0) return res.send('Invalid guest amount');
 
 	const capacity = req.body.capacity;
 	if (adultCount + childCount > capacity)
