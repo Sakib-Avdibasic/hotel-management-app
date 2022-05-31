@@ -23,7 +23,9 @@ const Reservation = () => {
 			.then(() => {
 				navigate('/');
 			})
-			.catch(err => console.log(err));
+			.catch(err =>
+				handleWarning(setShowWarning, setWarning, err.response.data)
+			);
 	};
 
 	const updateReserv = () => {
@@ -36,11 +38,11 @@ const Reservation = () => {
 			.put(`/reservation/${id}`, { roomId, arrival, checkout })
 			.then(response => {
 				const data = response.data;
-				if (typeof data == 'string') {
-					handleWarning(setShowWarning, setWarning, data);
-				} else window.location.reload();
+				window.location.reload();
 			})
-			.catch(err => console.log(err));
+			.catch(err =>
+				handleWarning(setShowWarning, setWarning, err.response.data)
+			);
 	};
 
 	useEffect(() => {

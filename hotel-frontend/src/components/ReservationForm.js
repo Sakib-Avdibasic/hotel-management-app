@@ -8,7 +8,7 @@ let selectableCountries = [];
 axios
 	.get('/countries')
 	.then(response => (selectableCountries = response.data))
-	.catch(err => console.log(err));
+	.catch(err => console.log(err.response));
 let guestNames = [];
 
 const ReservationForm = ({ roomId, capacity }) => {
@@ -90,17 +90,24 @@ const ReservationForm = ({ roomId, capacity }) => {
 			formData.zip_code = zipCode;
 		}
 
+		for (const param of Object.values(formData)) {
+			if (param === '')
+				return handleWarning(
+					setShowWarning,
+					setWarning,
+					'Please fill out all fields'
+				);
+		}
+
 		axios
 			.post('/reservation', formData)
 			.then(response => {
 				const data = response.data;
-				if (typeof data == 'string') {
-					handleWarning(setShowWarning, setWarning, data);
-				} else {
-					navigate(`/reservation/${data[0].reserv_id}`);
-				}
+				navigate(`/reservation/${data[0].reserv_id}`);
 			})
-			.catch(err => console.log(err));
+			.catch(err =>
+				handleWarning(setShowWarning, setWarning, err.response.data)
+			);
 	};
 
 	return (

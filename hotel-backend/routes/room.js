@@ -19,7 +19,7 @@ router.get('/:id', (req, res) => {
 				// cast MySQL tinyint to JS bool
 				room.bar = !!room.bar;
 				room.smoking = !!room.smoking;
-				res.status(200).send(room);
+				res.send(room);
 			}
 		}
 	);

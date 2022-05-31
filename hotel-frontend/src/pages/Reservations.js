@@ -34,11 +34,11 @@ const Reservations = () => {
 			)
 			.then(response => {
 				const data = response.data;
-				if (typeof data == 'string') {
-					handleWarning(setShowWarning, setWarning, data);
-				} else setReservations(data);
+				setReservations(data);
 			})
-			.catch(err => console.log(err));
+			.catch(err =>
+				handleWarning(setShowWarning, setWarning, err.response.data)
+			);
 	}, [searchParams]);
 
 	return (

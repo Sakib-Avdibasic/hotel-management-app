@@ -21,10 +21,8 @@ const Home = () => {
 	useEffect(() => {
 		axios
 			.get(`/${date || formatDate(new Date())}`)
-			.then(response => {
-				setRooms(response.data);
-			})
-			.catch(err => console.log(err));
+			.then(response => setRooms(response.data))
+			.catch(err => console.log(err.response));
 	}, [date]);
 
 	return (

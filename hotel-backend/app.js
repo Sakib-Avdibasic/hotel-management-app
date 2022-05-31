@@ -27,7 +27,7 @@ app.get('/guests', (req, res) => {
 	db.query(
 		'SELECT id, CONCAT(last_name, " ", first_name) AS name FROM guest ORDER BY last_name, first_name',
 		(err, result) => {
-			if (err) res.status(500).send(result);
+			if (err) res.status(500).send(err);
 			else res.send(result);
 		}
 	);
@@ -45,7 +45,7 @@ app.get('/:date', (req, res) => {
 
 	db.query(sql, (err, result) => {
 		if (err) {
-			res.send(err);
+			res.status(500).send(err);
 		} else {
 			const rooms = [];
 			let i = 0;

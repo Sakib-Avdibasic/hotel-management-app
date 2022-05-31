@@ -29,7 +29,7 @@ const RoomPage = () => {
 				setRoomInfo(data);
 				bedAmount = formatCapacity(data.bed_single, data.bed_double);
 			})
-			.catch(err => console.log(err));
+			.catch(err => console.log(err.response));
 	}, [id]);
 
 	return (

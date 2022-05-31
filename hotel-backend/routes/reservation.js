@@ -39,7 +39,7 @@ const insertReserv = (
 			else {
 				db.query('SELECT LAST_INSERT_ID() AS reserv_id', (err, result) => {
 					if (err) res.status(500).send(err);
-					else res.send(result);
+					else res.status(201).send(result);
 				});
 			}
 		}
@@ -51,7 +51,7 @@ router.get('/search', (req, res) => {
 	const lName = req.query.lname;
 
 	if (!fName && !lName)
-		return res.send('Nije dat nijedan parametar za pretragu');
+		return res.status(400).send('Nije dat nijedan parametar za pretragu');
 
 	let whereClause;
 	if (!fName) whereClause = `g.last_name = ${mysql.escape(lName)}`;
@@ -116,24 +116,26 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
 	console.log(req.body);
 	for (const param of Object.values(req.body)) {
-		if (param === '') return res.send('Please fill out all fields');
+		if (param === '') return res.status(400).send('Please fill out all fields');
 	}
 
 	const adultCount = req.body.adult_count;
 	if (adultCount < 1)
-		return res.send('At least 1 of the guests must be an adult');
+		return res.status(400).send('At least 1 of the guests must be an adult');
 
 	const childCount = req.body.child_count;
-	if (childCount < 0) return res.send('Invalid guest amount');
+	if (childCount < 0) return res.status(400).send('Invalid guest amount');
 
 	const capacity = req.body.capacity;
 	if (adultCount + childCount > capacity)
-		return res.send(`Maximum number of guests for this room is ${capacity}`);
+		return res
+			.status(400)
+			.send(`Maximum number of guests for this room is ${capacity}`);
 
 	const { arrival, checkout } = req.body;
 
 	if (new Date(arrival) >= new Date(checkout)) {
-		return res.send("The guests can't leave before he arrives");
+		return res.status(400).send("The guests can't leave before he arrives");
 	}
 
 	const roomId = req.body.room_id;
@@ -177,7 +179,7 @@ router.post('/', (req, res) => {
 				);
 			}
 		})
-		.catch(() => res.send('Room is taken in chosen period'));
+		.catch(() => res.status(403).send('Room is taken in chosen period'));
 });
 
 router.put('/:id', (req, res) => {
@@ -190,13 +192,12 @@ router.put('/:id', (req, res) => {
 				'UPDATE reservation SET arrival = ?, checkout = ? WHERE id = ?',
 				[arrival, checkout, id],
 				(err, result) => {
-					if (err) {
-						res.status(500).send(err);
-					} else res.send(result);
+					if (err) res.status(500).send(err);
+					else res.status(204).send(result);
 				}
 			);
 		})
-		.catch(() => res.send('Room is taken in chosen period'));
+		.catch(() => res.status(403).send('Room is taken in chosen period'));
 });
 
 router.delete('/:id', (req, res) => {
@@ -205,7 +206,7 @@ router.delete('/:id', (req, res) => {
 		[req.params.id],
 		(err, result) => {
 			if (err) res.status(500).send(err);
-			else res.send(result);
+			else res.status(204).send(result);
 		}
 	);
 });
