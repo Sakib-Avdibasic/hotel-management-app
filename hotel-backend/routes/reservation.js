@@ -51,7 +51,7 @@ router.get('/search', (req, res) => {
 	const lName = req.query.lname;
 
 	if (!fName && !lName)
-		return res.status(400).send('Nije dat nijedan parametar za pretragu');
+		return res.status(400).send('No search parameters given');
 
 	let whereClause;
 	if (!fName) whereClause = `g.last_name = ${mysql.escape(lName)}`;
